@@ -1,7 +1,7 @@
-package com.microservice.paciente.controller;
+package com.microservice.producto.controller;
 
-import com.microservice.paciente.model.Paciente;
-import com.microservice.paciente.service.PacienteService;
+import com.microservice.producto.model.Producto;
+import com.microservice.producto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -32,26 +32,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/api/v1/pacientes")
-public class PacienteController {
+@RequestMapping("/api/v1/producto")
+public class ProductoController {
 
     @Autowired
-    private PacienteService pacienteService;
+    private ProductoService productoService;
 
     @GetMapping("/listar")
-    public List<Paciente> getAllPatients(){
-        return pacienteService.findAll();
+    public List<Producto> getAllProducts(){
+        return productoService.findAll();
     }
     
-    @GetMapping("/{id_paciente}")
-    public ResponseEntity<?> getPatientById(@PathVariable Integer id){
-        Optional<Paciente> paciente = pacienteService.getPatientById(id);
-
-        if(paciente.isPresent()){
+    @GetMapping("/{id_producto}")
+    public ResponseEntity<?> getProductoById(@PathVariable Integer id){
+        Optional<Producto> producto = productoService.getProductoById(id);
+/*  
+        if(producto.isPresent()){
             //Respuesta exitosa con cabeceras personalizadas (opcional)
             return ResponseEntity.ok()
                     .header("mi-encabezado", "valor")
-                    .body(paciente.get());
+                    .body(producto.get());
         } else{
             //Respuesta de error con cuerpo personalizado ( ej: JSON con mensaje)
             Map<String,String> errorBody = new HashMap<>();
@@ -62,7 +62,7 @@ public class PacienteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(errorBody);
         }
-
+ */
         //Se usa <?> para permitir que el método retorne:
         //1. Un objeto Paciente ( en caso de éxito, código 200)
         //2. Un objeto de error personalizado(en caso de fallo, código 404)
@@ -74,21 +74,21 @@ public class PacienteController {
     
 
     @PostMapping("path")
-    public ResponseEntity<?> save(@Valid @RequestBody Paciente paciente){
+    public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
         try{
-            Paciente pacienteGuardado = pacienteService.save(paciente);
+            Producto productoGuardado = productoService.save(producto);
 
             //Uri del nuevo recurso creado ( ej: http://localhost:8080/paciente/5)
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(pacienteGuardado.getId_paciente())
+                    .buildAndExpand(productoGuardado.getId_producto())
                     .toUri();
 
             //Respuesta exitosa con cabeceras y cuerpo
             return ResponseEntity
                     .created(location)//Código 201 Created
-                    .body(pacienteGuardado);
+                    .body(productoGuardado);
         } catch(DataIntegrityViolationException e){
             //Ejemplo: Error si hay un campo único duplicado (ej: email repetido)
             Map<String,String> error = new HashMap<>();
@@ -97,20 +97,20 @@ public class PacienteController {
         }
     }
  
-    @PutMapping("/{id_paciente}")
-    public ResponseEntity<Paciente> update(@PathVariable int id,@RequestBody Paciente paciente){
+    @PutMapping("/{id_producto}")
+    public ResponseEntity<Producto> update(@PathVariable int id,@RequestBody Producto producto){
         try{
 
-            Paciente pac = pacienteService.getPatientById2(id);
-            pac.setId_paciente(id);
-            pac.setRut(paciente.getRut());
-            pac.setNombres(paciente.getNombres());
-            pac.setApellidos(paciente.getApellidos());
-            pac.setFechaNacimiento(paciente.getFechaNacimiento());
-            pac.setCorreo(paciente.getCorreo());
+            Producto prod = productoService.getProductById2(id);
+            prod.setId_paciente(id);
+            prod.setRut(producto.getRut());
+            prod.setNombres(producto.getNombres());
+            prod.setApellidos(producto.getApellidos());
+            prod.setFechaNacimiento(producto.getFechaNacimiento());
+            prod.setCorreo(producto.getCorreo());
 
-            pacienteService.save(paciente);
-            return ResponseEntity.ok(paciente);
+            productoService.save(producto);
+            return ResponseEntity.ok(producto);
 
         }catch(Exception ex){
             return ResponseEntity.notFound().build();
@@ -121,7 +121,7 @@ public class PacienteController {
     public ResponseEntity<?> eliminar(@PathVariable int id){
         try{
 
-            pacienteService.delete(id);
+            productoService.delete(id);
             return ResponseEntity.noContent().build();//Operacion exitosa pero no hay
             //contenido para devolver
 
