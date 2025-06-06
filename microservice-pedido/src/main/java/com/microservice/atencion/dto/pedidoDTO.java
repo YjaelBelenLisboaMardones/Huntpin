@@ -1,4 +1,4 @@
-package com.microservice.atencion.dto;
+package com.microservice.pedido.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 
-public class AtencionDTO {
+public class PedidoDTO {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha_atencion;
     @JsonFormat(pattern = "HH:mm:ss")
