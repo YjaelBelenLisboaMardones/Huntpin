@@ -6,7 +6,6 @@ import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalTime;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -15,10 +14,11 @@ import java.time.LocalDate;
 
 public class PedidoDTO {
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate fecha_atencion;
-    @JsonFormat(pattern = "HH:mm:ss")
-    private LocalTime hora_atencion;
-    private Double costo;
-    private Integer id_paciente;
+    private LocalDate fechaPedido;
+    private String estado;
+    private Double costoTotal;
+    private Integer idCliente;
     private String comentario;
+    // Lista de productos relacionados (obtenidos desde otro microservicio)
+    private List<ProductoDTO> productos;
 }
