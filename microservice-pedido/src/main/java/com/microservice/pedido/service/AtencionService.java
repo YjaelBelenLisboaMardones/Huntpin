@@ -1,12 +1,12 @@
-package com.microservice.atencion.service;
-
-import com.microservice.atencion.model.Atencion;
-import com.microservice.atencion.repository.AtencionRepository;
-import com.microservice.atencion.dto.AtencionDTO;
+package com.microservice.pedido.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.microservice.pedido.dto.AtencionDTO;
+import com.microservice.pedido.model.Atencion;
+import com.microservice.pedido.repository.AtencionRepository;
 
 import java.util.List;
 import java.util.Optional;

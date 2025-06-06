@@ -7,8 +7,8 @@
     <module>microservice-gateway</module>
     <module>microservice-eureka</module>
     <module>microservice-config</module>
-    <module>microservice-paciente</module>
-    <module>microservice-atencion</module>
+    <module>microservice-producto</module>
+    <module>microservice-pedido</module>
   </modules>
 
   <parent>
@@ -19,10 +19,10 @@
   </parent>
 
   <groupId>com.mycompany.app</groupId>
-  <artifactId>hospital</artifactId>
+  <artifactId>hunttpinn</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>hospital</name>
+  <name>hunttpinn</name>
   <url>http://www.example.com</url>
   <packaging>pom</packaging>
 

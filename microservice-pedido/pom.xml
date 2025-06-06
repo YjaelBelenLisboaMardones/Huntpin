@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mycompany.app</groupId>
-  		<artifactId>hospital</artifactId>
+  		<artifactId>hunttpinn</artifactId>
   		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.microservice.atencion</groupId>
-	<artifactId>microservice-atencion</artifactId>
+	<groupId>com.microservice.pedido</groupId>
+	<artifactId>microservice-pedido</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservice-atencion</name>
-	<description>Spring Boot  microservice atencion</description>
+	<name>microservice-pedidon</name>
+	<description>Spring Boot  microservice pedido</description>
 	<url/>
 	<licenses>
 		<license/>

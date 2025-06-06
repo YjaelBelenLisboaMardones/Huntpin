@@ -46,6 +46,12 @@ public class ProductoController {
     @GetMapping("/{id_producto}")
     public ResponseEntity<?> getProductoById(@PathVariable Integer id){
         Optional<Producto> producto = productoService.getProductoById(id);
+            if (producto.isPresent()) {
+        return ResponseEntity.ok(producto.get());
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+    }
+}
 /*  
         if(producto.isPresent()){
             //Respuesta exitosa con cabeceras personalizadas (opcional)
@@ -70,7 +76,6 @@ public class ProductoController {
         //Al usar <?>, no estas limitando el cuerpo de la respuesta a un único tipo (como Paciente)
         //Si no que permites múltiples tipos en la respuesta
 
-    }
     
 
     @PostMapping("path")
@@ -102,12 +107,11 @@ public class ProductoController {
         try{
 
             Producto prod = productoService.getProductById2(id);
-            prod.setId_paciente(id);
-            prod.setRut(producto.getRut());
-            prod.setNombres(producto.getNombres());
-            prod.setApellidos(producto.getApellidos());
-            prod.setFechaNacimiento(producto.getFechaNacimiento());
-            prod.setCorreo(producto.getCorreo());
+            prod.setId_producto(id);
+            prod.setNombre(producto.getNombre());
+            prod.setMarca(producto.getMarca());
+            prod.setPrecio(producto.getPrecio());
+            prod.setStock(producto.getStock());
 
             productoService.save(producto);
             return ResponseEntity.ok(producto);
