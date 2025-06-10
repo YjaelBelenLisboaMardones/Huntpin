@@ -1,12 +1,12 @@
 server:
-  port: 8090
+  port: 9090
 
 spring:
   application:
-    name: msvc-paciente
+    name: msvc-pedido
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_hospital_vm
+    url: jdbc:mysql://localhost:3306/productos_db
     username: root
     password: 
   jpa:

@@ -1,5 +1,7 @@
 package com.microservice.pedido.dto;
 
+//import com.microservice.pedido.model.Pedido;
+//import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -19,6 +21,5 @@ public class PedidoDTO {
     private Double costoTotal;
     private Integer idCliente;
     private String comentario;
-    // Lista de productos relacionados (obtenidos desde otro microservicio)
-    private List<ProductoDTO> productos;
+
 }

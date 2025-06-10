@@ -1,7 +1,7 @@
-package com.microservice.producto.controller;
+package com.microservice.pedido.controller;
 
-import com.microservice.producto.model.Producto;
-import com.microservice.producto.service.ProductoService;
+import com.microservice.pedido.model.Pedido;
+import com.microservice.pedido.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -32,64 +32,65 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/api/producto")
-public class ProductoController {
+@RequestMapping("/api/pedido")
+public class PedidoController {
+
 
 @Autowired
-private ProductoService productoService;
+private PedidoService pedidoService;
 
 @GetMapping("/listar")
-public List<Producto> getAllProducts(){
-    return productoService.findAll();
+public List<Pedido> getAllPedidos(){
+    return pedidoService.findAll();
 }
     
-@GetMapping("/{id_producto}")
+@GetMapping("/{id_pedido}")
 public ResponseEntity<?> getProductoById(@PathVariable Integer id){
-    Optional<Producto> producto = productoService.getProductoById(id);
-        if (producto.isPresent()) {
-            return ResponseEntity.ok(producto.get());
+    Optional<Pedido> pedido = pedidoService.getPedidoById(id);
+        if (pedido.isPresent()) {
+            return ResponseEntity.ok(pedido.get());
     }   else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pedido no encontrado");
     }
 }
   
 @PostMapping
-public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
+public ResponseEntity<?> save(@Valid @RequestBody Pedido pedido){
     try{
-        Producto productoGuardado = productoService.save(producto);
+        Pedido pedidoGuardado = pedidoService.save(pedido);
 
             //Uri del nuevo recurso creado ( ej: http://localhost:8080/paciente/5)
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(productoGuardado.getId_producto())
+                .buildAndExpand(pedidoGuardado.getIdPedido())
                 .toUri();
 
             //Respuesta exitosa con cabeceras y cuerpo
             return ResponseEntity
                 .created(location)//Código 201 Created
-                .body(productoGuardado);
+                .body(pedidoGuardado);
     } catch(DataIntegrityViolationException e){
             //Ejemplo: Error si hay un campo único duplicado (ej: email repetido)
         Map<String,String> error = new HashMap<>();
-        error.put("message","El producto ya está registrado");
+        error.put("message","El pedido ya está registrado");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);//Error 409
         }
     }
  
-    @PutMapping("/{id_producto}")
-    public ResponseEntity<Producto> update(@PathVariable int id_producto,@RequestBody Producto producto){
+    @PutMapping("/{id_pedido}")
+    public ResponseEntity<Pedido> update(@PathVariable int id_pedido,@RequestBody Pedido pedido){
         try{
 
-            Producto prod = productoService.getProductById2(id_producto);
-            prod.setId_producto(id_producto);
-            prod.setNombre(producto.getNombre());
-            prod.setMarca(producto.getMarca());
-            prod.setPrecio(producto.getPrecio());
-            prod.setStock(producto.getStock());
+            Pedido ped = pedidoService.getPedidoById2(id_pedido);
+            ped.setIdPedido(id_pedido);
+            ped.setFechaPedido(pedido.getFechaPedido());
+            ped.setEstado(pedido.getEstado());
+            ped.setCostoTotal(pedido.getCostoTotal());
+            ped.setIdCliente(pedido.getIdCliente());
 
-            productoService.save(producto);
-            return ResponseEntity.ok(producto);
+            pedidoService.save(pedido);
+            return ResponseEntity.ok(pedido);
 
         }catch(Exception ex){
             return ResponseEntity.notFound().build();
@@ -100,7 +101,7 @@ public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
     public ResponseEntity<?> eliminar(@PathVariable int id){
         try{
 
-            productoService.delete(id);
+            pedidoService.delete(id);
             return ResponseEntity.noContent().build();//Operacion exitosa pero no hay
             //contenido para devolver
 
@@ -108,4 +109,5 @@ public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
             return ResponseEntity.notFound().build();
         }
     }
+
 }
