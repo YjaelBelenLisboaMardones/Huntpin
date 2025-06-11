@@ -37,7 +37,7 @@ public class Pedido {
     private Double costoTotal;
 
     @Column(nullable = false)
-    private int idCliente;
+    private int id_producto;
 
     @Column(nullable = false)
     private String comentario;

@@ -19,7 +19,7 @@ public class PedidoDTO {
     private LocalDate fechaPedido;
     private String estado;
     private Double costoTotal;
-    private Integer idCliente;
+    private Integer id_producto;
     private String comentario;
 
 }

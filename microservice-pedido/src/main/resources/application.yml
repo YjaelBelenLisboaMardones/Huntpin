@@ -1,6 +1,6 @@
 spring:
   application:
-    name: msvc-pedido
+    name: msvc-cliente
   config:
     import: optional:configserver:http://localhost:8888
 

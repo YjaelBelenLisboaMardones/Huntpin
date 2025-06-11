@@ -87,7 +87,7 @@ public ResponseEntity<?> save(@Valid @RequestBody Pedido pedido){
             ped.setFechaPedido(pedido.getFechaPedido());
             ped.setEstado(pedido.getEstado());
             ped.setCostoTotal(pedido.getCostoTotal());
-            ped.setIdCliente(pedido.getIdCliente());
+            ped.setId_producto(pedido.getId_producto());
 
             pedidoService.save(pedido);
             return ResponseEntity.ok(pedido);
