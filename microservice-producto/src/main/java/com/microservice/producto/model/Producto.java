@@ -22,9 +22,6 @@ public class Producto{
     @Column(name="nombre", unique=true,length=100,nullable = false)
     private String nombre;
 
-    @Column(nullable=false)
-    private String marca;
-
     @Column(nullable = false)
     private double precio;
 

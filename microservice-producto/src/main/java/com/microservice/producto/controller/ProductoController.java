@@ -44,12 +44,12 @@ public List<Producto> getAllProducts(){
 }
     
 @GetMapping("/{id_producto}")
-public ResponseEntity<?> getProductoById(@PathVariable Integer id){
-    Optional<Producto> producto = productoService.getProductoById(id);
-        if (producto.isPresent()) {
-            return ResponseEntity.ok(producto.get());
-    }   else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+public ResponseEntity<?> getProductoById(@PathVariable("id_producto") Integer id_producto) {
+    Optional<Producto> producto = productoService.getProductoById(id_producto);
+    if (producto.isPresent()) {
+        return ResponseEntity.ok(producto.get());
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
     }
 }
   
@@ -84,7 +84,6 @@ public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
             Producto prod = productoService.getProductById2(id_producto);
             prod.setId_producto(id_producto);
             prod.setNombre(producto.getNombre());
-            prod.setMarca(producto.getMarca());
             prod.setPrecio(producto.getPrecio());
             prod.setStock(producto.getStock());
 
