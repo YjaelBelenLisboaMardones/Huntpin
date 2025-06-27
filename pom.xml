@@ -3,6 +3,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+ <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.3.12</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <packaging>pom</packaging>  
+
   <modules>
     <module>microservice-gateway</module>
     <module>microservice-eureka</module>
@@ -11,62 +19,18 @@
     <module>microservice-pedido</module>
   </modules>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.3.12</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
-
   <groupId>com.mycompany.app</groupId>
   <artifactId>hunttpinn</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>hunttpinn</name>
   <url>http://www.example.com</url>
-  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-		<spring-cloud.version>2023.0.5</spring-cloud.version>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>2023.0.1</version> <!-- Versión compatible con Spring Boot 3.2.x -->
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  	<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-  <dependencies>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-      </dependency>
-      <dependency>
-			  <groupId>org.springframework.boot</groupId>
-			  <artifactId>spring-boot-starter-validation</artifactId>
-		  </dependency>
-  </dependencies>
-  
-  
   <build>
     <pluginManagement>
       <plugins>
@@ -79,5 +43,40 @@
     </pluginManagement>
   </build>
 
-  
+  <dependencyManagement>
+
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+			  <groupId>org.springframework.boot</groupId>
+			  <artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>2023.0.5</version> <!-- Versión compatible con Spring Boot 3.2.x -->
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+  	<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+  </dependencyManagement>
+
 </project>

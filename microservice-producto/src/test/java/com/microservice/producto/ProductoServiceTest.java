@@ -8,6 +8,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,7 +31,8 @@ public class ProductoServiceTest {
     @InjectMocks
     private ProductoService productoService;
 
-    public ProductoServiceTest() {
+    @BeforeEach
+        void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
