@@ -3,6 +3,7 @@ spring:
     name: msvc-producto
   config:
     import: 'optional:configserver:http://localhost:8888'
+    
 springdoc:
   api-docs:
     enabled: true

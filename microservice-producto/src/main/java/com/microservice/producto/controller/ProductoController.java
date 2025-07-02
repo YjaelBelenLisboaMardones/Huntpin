@@ -2,6 +2,14 @@ package com.microservice.producto.controller;
 
 import com.microservice.producto.model.Producto;
 import com.microservice.producto.service.ProductoService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -33,12 +41,14 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/producto")
+@Tag(name = "Producto", description = "Operaciones relacionadas con los productos")
 public class ProductoController {
 
 @Autowired
 private ProductoService productoService;
 
 @GetMapping("/listar")
+@Operation(summary="Obtener todos los productos", description = "Obtiene una lista de todos los productos")
 public List<Producto> getAllProducts(){
     return productoService.findAll();
 }
@@ -77,7 +87,15 @@ public ResponseEntity<?> save(@Valid @RequestBody Producto producto){
         }
     }
  
+
     @PutMapping("/{id_producto}")
+    @Operation(summary="Actualizar un producto", description = "Actualiza los detalles de un producto existente")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Producto actualizado exitosamente",
+        content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Producto.class))),
+    @ApiResponse(responseCode = "404", description = "Producto no encontrado")
+})
     public ResponseEntity<Producto> update(@PathVariable int id_producto,@RequestBody Producto producto){
         try{
 
