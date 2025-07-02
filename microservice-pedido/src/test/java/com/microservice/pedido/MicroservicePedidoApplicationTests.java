@@ -10,4 +10,10 @@ class MicroservicePedidoApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void mainRunsWithoutStartingWebServer() {
+		System.setProperty("spring.main.web-application-type", "none");
+		MicroservicePedidoApplication.main(new String[]{});
+}
+
 }
