@@ -35,9 +35,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Optional;
 import java.net.URI;
-//import java.time.LocalDateTime;
-//import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/producto")

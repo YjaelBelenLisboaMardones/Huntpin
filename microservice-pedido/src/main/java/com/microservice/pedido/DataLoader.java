@@ -24,7 +24,6 @@ public class DataLoader implements CommandLineRunner {
         Faker faker = new Faker();
         Random random = new Random();
 
-        // Generar tipos de sala
          for (int i = 0; i < 10; i++) {
             Pedido pedido = new Pedido();
             pedido.setFechaPedido(LocalDate.now().minusDays(random.nextInt(30)));
