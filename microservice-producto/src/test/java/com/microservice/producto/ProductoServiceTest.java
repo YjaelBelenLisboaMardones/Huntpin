@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.microservice.producto.model.Producto;
 import com.microservice.producto.repository.ProductoRepository;
@@ -22,14 +23,14 @@ import java.util.List;
 import java.util.Collections;
 import java.util.Optional;
 
+@SpringBootTest
 public class ProductoServiceTest {
-
-    
-    @Mock
-    private ProductoRepository productoRepository;
 
     @InjectMocks
     private ProductoService productoService;
+
+    @Mock
+    private ProductoRepository productoRepository;
 
     @BeforeEach
         void setUp() {

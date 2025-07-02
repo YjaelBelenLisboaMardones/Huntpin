@@ -7,7 +7,7 @@
   		<artifactId>hunttpinn</artifactId>
   		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.microserviceeureka</groupId>
+	<groupId>com.microservice.eureka</groupId>
 	<artifactId>microservice-eureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>microservice-eureka</name>
