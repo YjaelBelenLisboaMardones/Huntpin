@@ -11,5 +11,12 @@ class MicroserviceProductoApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
+	@Test
+    void mainMethodRunsWithoutWebServer() {
+        // Evita que se levante el servidor web durante el test
+        System.setProperty("spring.main.web-application-type", "none");
+        MicroserviceProductoApplication.main(new String[]{});
+    }
 	
 }
