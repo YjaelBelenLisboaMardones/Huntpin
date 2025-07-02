@@ -99,7 +99,7 @@ class ProductoControllerV2Test {
 
         ResponseEntity<EntityModel<Producto>> response = productoControllerV2.updateProducto(1, producto);
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(entityModel, response.getBody());
     }
 
@@ -109,7 +109,7 @@ class ProductoControllerV2Test {
 
         ResponseEntity<?> response = productoControllerV2.deleteProducto(1);
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
         verify(productoService, times(1)).delete(1);
     }
 }
